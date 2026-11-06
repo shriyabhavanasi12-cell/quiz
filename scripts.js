@@ -1,7 +1,7 @@
 var score=0;
 var currentQ=0;
 
-const scoreText=document.querySelector("scoreText");
+const scoreText=document.querySelector("#scoreText");
 const questions= document.querySelectorAll(".q-container");
 
 const fullMarks=document.querySelector(".fullMarks");
@@ -9,17 +9,17 @@ const retry=document.querySelector(".retry");
 
 function checkAnswer(question,result){
 
-    let answer=document.querySelector(`input[]`)
+    let answer=document.querySelector(`input[name="${questions}"]:checked`)
 let qResult=document.querySelector(result);
 
 qResult.style.display="block";
 
 if(answer){
-    document.querySelector("#"+ question).desabled=true;
+    document.querySelector("#"+ question).disabled=true;
     if(answer.value=="correct"){
         qResult.innerText='Correct';
         score+=1;
-        scoreText.innerText=`Score: %{score}`;
+        scoreText.innerText=`Score: ${score}`;
         nextQ();
     } else{
         qResult.innerText="Incorrect";
