@@ -7,31 +7,28 @@ const questions= document.querySelectorAll(".q-container");
 const fullMarks=document.querySelector(".fullMarks");
 const retry=document.querySelector(".retry");
 
-function checkAnswer(question,result){
+function checkAnswer(question, result) {
+  let answer = document.querySelector(`input[name="${question}"]:checked`);
+  let qResult = document.querySelector(result);
+  
+  qResult.style.display = "block";
 
-    let answer=document.querySelector(`input[name="${questions}"]:checked`)
-let qResult=document.querySelector(result);
-
-qResult.style.display="block";
-
-if(answer){
-    document.querySelector("#"+ question).disabled=true;
-    if(answer.value=="correct"){
-        qResult.innerText='Correct';
-        score+=1;
-        scoreText.innerText=`Score: ${score}`;
-        nextQ();
-    } else{
-        qResult.innerText="Incorrect";
-        nextQ();
-
+  if (answer) {
+    document.querySelector("#" + question).disabled = true;
+    if (answer.value === "correct") {
+      qResult.innerText = "Correct";
+      score+=1;
+      scoreText.innerText = `Score: ${score}`;
+      nextQ();
+    } else {
+      qResult.innerText = "Incorrect";
+      nextQ();
     }
-
-}else{
-        qResult.innerText="Please select an answer";
-    }
-
+  } else {
+    qResult.innerText = "Please select an answer";
+  }
 }
+
 
 function nextQ(){
     questions[currentQ].classList.add("fade-out");
